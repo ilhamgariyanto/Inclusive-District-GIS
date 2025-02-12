@@ -1,29 +1,27 @@
 import { useState, useEffect } from "react";
 import { FaSearch } from "react-icons/fa";
 import p1 from "../../assets/img/bg-data.png";
-import { useLocation } from "react-router-dom"; // untuk mendapatkan lokasi saat ini
+import { useLocation } from "react-router-dom"; 
 
 const MetadataPage = () => {
   const [category, setCategory] = useState("");
   const [organization, setOrganization] = useState("");
   const [sort, setSort] = useState("Terpopuler");
   const [show, setShow] = useState(false);
-  const location = useLocation(); // Menggunakan hook untuk melacak lokasi
+  const location = useLocation(); 
 
   useEffect(() => {
-    setShow(true); // Trigger animation on component mount
-  }, [location]); // Ketika lokasi berubah, animasi di-trigger
+    setShow(true); 
+  }, [location]);
 
   return (
     <section className="bg-gray-100 min-h-screen flex flex-col items-center px-6 py-10">
-      {/* Breadcrumb */}
       <div className="w-full max-w-6xl text-gray-500 text-sm mt-12">
         <span className="text-gray-700 font-medium">🏠 Beranda</span> / Data
       </div>
 
-      {/* Header with Animation */}
       <div
-        key={location.key} // Tambahkan key yang berubah saat lokasi berubah
+        key={location.key} 
         className={`w-full max-w-6xl flex flex-col lg:flex-row items-center justify-between text-center lg:text-left transition-all duration-1000 ease-in-out transform ${
           show ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
         }`}
@@ -46,7 +44,6 @@ const MetadataPage = () => {
         />
       </div>
 
-      {/* Search & Filters Section with Animation */}
       <div
         className={`w-full max-w-6xl mt-12 transition-all duration-1000 ease-in-out transform ${
           show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
@@ -97,8 +94,6 @@ const MetadataPage = () => {
           </div>
         </div>
       </div>
-
-      {/* Result Section with Animation */}
       <div
         className={`w-full max-w-6xl mt-6 text-gray-700 transition-all duration-1000 ease-in-out transform ${
           show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"

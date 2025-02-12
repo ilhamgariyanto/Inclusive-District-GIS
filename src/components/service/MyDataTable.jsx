@@ -1,13 +1,10 @@
 import { useState, useRef, useEffect } from "react";
 import DataTable from "react-data-table-component";
 import { FaEye, FaCopy, FaChevronDown } from "react-icons/fa";
+import { createPortal } from "react-dom";
 
 const data = [
   { id: 1, url: "http://103.233.103.22:8090/geoserver/dilans/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=dilans%3Atoponimi_kesehatan_8467383&maxFeatures=50&outputFormat=application%2Fjson", keterangan: "Dilans Toponomi Kesehatan" },
-  { id: 2, url: "https://example.com/arianto", keterangan: "Arianto Profile" },
-  { id: 3, url: "https://example.com/gilang", keterangan: "Gilang Profile" },
-  { id: 4, url: "https://example.com/putra", keterangan: "Putra Profile" },
-  { id: 5, url: "https://example.com/fajar", keterangan: "Fajar Profile" },
 ];
 
 const openInNewTab = (url) => {
@@ -26,6 +23,8 @@ const copyToClipboard = async (url) => {
 const ActionDropdown = ({ row }) => {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);
+  const buttonRef = useRef(null);
+  const [position, setPosition] = useState({ top: 0, left: 0 });
 
   // Menutup dropdown jika klik di luar
   useEffect(() => {
@@ -38,6 +37,16 @@ const ActionDropdown = ({ row }) => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  useEffect(() => {
+    if (open && buttonRef.current) {
+      const rect = buttonRef.current.getBoundingClientRect();
+      setPosition({
+        top: rect.bottom + window.scrollY + 5,
+        left: rect.left + window.scrollX,
+      });
+    }
+  }, [open]);
+
   const handleView = () => {
     openInNewTab(row.url);
     setOpen(false);
@@ -49,31 +58,38 @@ const ActionDropdown = ({ row }) => {
   };
 
   return (
-    <div className="relative" ref={dropdownRef}>
+    <>
       <button
+        ref={buttonRef}
         className="px-3 py-1 border rounded bg-gray-100 hover:bg-gray-200 flex items-center gap-1 cursor-pointer"
         onClick={() => setOpen(!open)}
       >
         Pilih Aksi <FaChevronDown />
       </button>
 
-      {open && (
-        <div className="absolute left-0 mt-1 w-32 bg-white border shadow-lg rounded-md z-10">
-          <button
-            className="flex items-center gap-2 w-full px-3 py-2 text-left hover:bg-gray-100"
-            onClick={handleView}
+      {open &&
+        createPortal(
+          <div
+            ref={dropdownRef}
+            className="absolute w-40 bg-white border shadow-lg rounded-md z-50"
+            style={{ top: position.top, left: position.left }}
           >
-            <FaEye /> View
-          </button>
-          <button
-            className="flex items-center gap-2 w-full px-3 py-2 text-left hover:bg-gray-100"
-            onClick={handleCopy}
-          >
-            <FaCopy /> Copy Link
-          </button>
-        </div>
-      )}
-    </div>
+            <button
+              className="flex items-center gap-2 w-full px-3 py-2 text-left hover:bg-gray-100"
+              onClick={handleView}
+            >
+              <FaEye /> View
+            </button>
+            <button
+              className="flex items-center gap-2 w-full px-3 py-2 text-left hover:bg-gray-100"
+              onClick={handleCopy}
+            >
+              <FaCopy /> Copy Link
+            </button>
+          </div>,
+          document.body // Gunakan portal agar dropdown muncul di luar tabel
+        )}
+    </>
   );
 };
 
@@ -109,16 +125,16 @@ const MyDataTable = () => {
 
   return (
     <div className="p-4 shadow-lg rounded-lg bg-white text-black">
-      {/* <h2 className="text-lg font-semibold mb-2">Daftar URL</h2>
+      <h2 className="text-lg font-semibold mb-2">Daftar URL</h2>
       <div className="mb-4">
-        <input
+        {/* <input
           type="text"
           placeholder="Cari URL..."
           value={filterText}
           onChange={(e) => setFilterText(e.target.value)}
           className="w-1/4 p-2 border rounded bg-white text-black"
-        />
-      </div> */}
+        /> */}
+      </div>
       <DataTable
         columns={columns}
         data={filteredData}

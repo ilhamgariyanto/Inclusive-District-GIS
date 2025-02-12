@@ -8,10 +8,10 @@ const Hero = () => {
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
             }}>
-            {/* <div class="hero-overlay"></div> */}
+
             <div className="hero-content text-center w-screen">
                 <div className="max-w-screen">
-                    <h1 className="text-6xl font-bold text-white">Inclusive  Distict GIS</h1>
+                    <h1 className="text-6xl font-bold text-white">Inclusive  District GIS</h1>
                     <p className="py-4 text-xl md:text-2xl text-white">
                         Sistem Informasi Geospasial Sumur Bandung untuk Pengelolaan Data dan Perencanaan
                     </p>

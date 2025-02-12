@@ -6,15 +6,14 @@ import { logoutFromCMDBuild } from '../services/authServices';
 const Navbar = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const navigate = useNavigate();
-    const location = useLocation();  // Gunakan useLocation untuk mendeteksi perubahan rute
+    const location = useLocation();  
 
     useEffect(() => {
         const token = Cookies.get('CMDBuild-Authorization');
         setIsLoggedIn(!!token);
 
-        // Scroll ke atas setiap kali lokasi berubah
         window.scrollTo(0, 0);
-    }, [location]);  // Effect akan dijalankan setiap kali lokasi berubah
+    }, [location]); 
 
     const handleLogout = async () => {
         try {
@@ -58,11 +57,11 @@ const Navbar = () => {
                                 Data
                             </Link>
                         </li>
-                        <li>
+                        {/* <li>
                             <Link to="/proses" className={`nav-link ${isActive('/proses')}`}>
                                 Proses
                             </Link>
-                        </li>
+                        </li> */}
                     </ul>
                 </div>
                 <Link to="/" className="btn btn-ghost text-xl">
@@ -91,11 +90,11 @@ const Navbar = () => {
                             Data
                         </Link>
                     </li>
-                    <li className="pointer-events-none opacity-50">
+                    {/* <li className="pointer-events-none opacity-50">
                         <Link to="/proses" className={`nav-link ${isActive('/proses')}`}>
                             Proses
                         </Link>
-                    </li>
+                    </li> */}
 
                 </ul>
             </div>
