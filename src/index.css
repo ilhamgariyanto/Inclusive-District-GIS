@@ -1,4 +1,118 @@
 
+:root {
+  --color-text: #242424; /* Teks utama */
+  --color-background: #FFFBE6; /* Warna latar belakang utama */
+  --color-primary: #007F73; /* Warna utama untuk elemen interaktif */
+  --color-primary-hover: #4CCD99; /* Warna hover untuk elemen utama */
+  --color-secondary: #FFC700; /* Warna sekunder */
+  --color-secondary-hover: #FFF455; /* Warna hover untuk elemen sekunder */
+  --color-accent: #FFC700; /* Warna aksen */
+  --color-white: #ffffff; /* Warna putih */
+}
+
+/* Warna Background */
+.bg-primary {
+  background-color: var(--color-primary);
+}
+
+.bg-primary-hover:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.bg-primary-hover {
+  background-color: var(--color-primary-hover);
+}
+
+.bg-secondary {
+  background-color: var(--color-secondary);
+}
+
+.bg-secondary-dark {
+  background-color: var(--color-secondary-hover);
+}
+
+.bg-secondary-hover:hover {
+  background-color: var(--color-secondary-hover);
+}
+
+.bg-accent {
+  background-color: var(--color-accent);
+}
+
+.bg-white {
+  background-color: var(--color-white);
+}
+
+/* Warna Teks */
+.text-primary {
+  color: var(--color-primary);
+}
+
+.text-secondary {
+  color: var(--color-secondary);
+}
+
+.text-accent {
+  color: var(--color-accent);
+}
+
+.text-white {
+  color: var(--color-white);
+}
+
+.text-dark {
+  color: var(--color-text);
+}
+
+/* Button */
+.btn {
+  border: none;
+  border-radius: 8px;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, transform 0.3s;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.btn-secondary {
+  background-color: var(--color-secondary);
+  color: var(--color-white);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-secondary-hover);
+}
+
+/* Card Hover Effect */
+.hover-card {
+  transition: background-color 0.3s, color 0.3s, transform 0.3s;
+}
+
+.hover-card:hover {
+  background-color: var(--color-secondary-hover);
+  color: var(--color-white);
+  transform: scale(1.05);
+}
+
+.hover-card:hover .icon-bg {
+  background-color: var(--color-primary-hover);
+}
+
+.hover-card:hover h4,
+.hover-card:hover p {
+  color: var(--color-white);
+}
+
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

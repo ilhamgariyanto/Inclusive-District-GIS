@@ -58,7 +58,7 @@ const Mapstore = () => {
     return (
         <>
             <div>
-                <section className="mapstore mt-10 bg-neutral">
+                <section className="mapstore mt-3 bg-neutral">
                     <div className="container mx-auto px-6 py-10 rounded-xl">
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 py-5">
                             <div className="py-4">
